@@ -454,8 +454,10 @@ inline void LUTPopulateInt8(float input_scale, int32_t input_zero_point,
       "T must be an uint8 or int8 type.");
   uint8_t* lut_uint8 = reinterpret_cast<uint8_t*>(lut);
   const float inverse_scale = 1 / output_scale;
+  
   int32_t maxval = std::numeric_limits<T>::max();
   int32_t minval = std::numeric_limits<T>::min();
+
   for (int32_t val = minval; val <= maxval; ++val) {
     const float dequantized = input_scale * (val - input_zero_point);
     const float transformed =
